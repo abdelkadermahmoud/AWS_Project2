@@ -19,23 +19,24 @@ import {filterImageFromURL, deleteLocalFiles} from './util/util';
   // IT SHOULD
   //    1
   //    1. validate the image_url query
-  app.get("/filteredimage",async (req: express.Request ,res: express.Response )=>
+  app.get("/filteredimage",async (req: express.Request , res: express.Response )=>
   {
     const image_url: string = req.query.image_url;
-    res.send(image_url);
     if(!image_url)
       {return res.status(402).send('You must enter a valid url image')}
-      let filteredimagelink: string=""
-  try{
-    filteredimagelink =  await filterImageFromURL(image_url)
-     res.sendfile(filteredimagelink)
+      let filteredimagelink:  string =  await filterImageFromURL(image_url)
+    if(!filteredimagelink)
+      return  res.status(422).send("error while filtering image")
+    else
+    {
+      console.log(filteredimagelink);
+     // return  res.send(filteredimagelink);
+      res.sendFile(filteredimagelink,{},() => deleteLocalFiles([filteredimagelink]))
+    }
+    
 
-  }
-  catch(Exception )
-  {
-     res.status(422).send("error while filtering image")
-  }
-  deleteLocalFiles([filteredimagelink])
+  
+ 
 });
   //! END @TODO1
   
