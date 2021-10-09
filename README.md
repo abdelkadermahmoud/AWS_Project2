@@ -25,4 +25,4 @@ You'll need to create a new node server. Open a new terminal within the project 
 
 If you're feeling up to it, refactor the course RESTapi to make a request to your newly provisioned image server.
 
-you can test the live version on http://fstack-dev.us-east-2.elasticbeanstalk.com/"# AWS_Project2" 
+you can test the live version on http://fstack-dev.us-east-2.elasticbeanstalk.com/  # AWS_Project2" 
